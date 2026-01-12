@@ -3,107 +3,553 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cybersecurity blog by Simone Licitra covering penetration testing, red team operations, security research, and ethical hacking insights.">
-    <title>Blog | Simone Licitra</title>
+    <meta name="description" content="Cybersecurity blog by Simone Licitra - OSCP, CRTO, CPTS certified pentester sharing insights on offensive security, red teaming, and ethical hacking.">
+    <title>Blog | Simone Licitra - Cybersecurity Articles</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px),
+                linear-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.05;
+        }
+
+        .blog-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 159, 0.5);
+        }
+
+        .blog-header p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .blog-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .blog-main {
+            padding: 4rem 0 6rem;
+            background: var(--bg-primary);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 60px rgba(0, 255, 159, 0.2);
+        }
+
+        .article-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.1);
+        }
+
+        .article-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(10, 14, 39, 0.9));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .article-tag {
+            padding: 0.4rem 1rem;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .article-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .article-meta i {
+            color: var(--accent-primary);
+            margin-right: 0.3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .article-content h2 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-content h2 a:hover {
+            color: var(--accent-primary);
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .read-time {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .article-link:hover {
+            gap: 1rem;
+        }
+
+        .external-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--accent-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .no-articles {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .no-articles i {
+            font-size: 4rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-filter {
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
+    <!-- Animated Background -->
+    <div class="particles-container" id="particles"></div>
+    <div class="matrix-bg" id="matrix"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
             <div class="nav-brand">
-                <a href="index.html">r08t@sec:~$</a>
+                <a href="index.html">
+                    <span class="terminal-prompt">root@r08t:~#</span>
+                    <span class="cursor">_</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="https://github.com/licitrasimone" target="_blank">GitHub</a></li>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="content-header">
+    <!-- Blog Header -->
+    <header class="blog-header">
         <div class="container">
-            <h1>Blog</h1>
-            <p class="subtitle">Insights on cybersecurity, penetration testing, and red team operations</p>
+            <h1>Security Research & Insights</h1>
+            <p>Exploring offensive security, penetration testing, and red team operations through detailed writeups and analysis</p>
         </div>
     </header>
 
-    <section class="content-section">
+    <!-- Blog Filter -->
+    <section class="blog-main">
         <div class="container">
-            <article class="blog-article">
-                <h2>Welcome to My Cybersecurity Blog</h2>
-                <div class="article-meta">
-                    <span class="post-date">January 12, 2026</span>
-                    <span class="post-category">Introduction</span>
-                </div>
+            <div class="blog-filter">
+                <button class="filter-btn active" data-filter="all">All Articles</button>
+                <button class="filter-btn" data-filter="pentesting">Penetration Testing</button>
+                <button class="filter-btn" data-filter="redteam">Red Team</button>
+                <button class="filter-btn" data-filter="ctf">CTF Writeups</button>
+                <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+            </div>
 
-                <p>Welcome to my cybersecurity blog. I'm Simone Licitra, a penetration tester and red team operator with certifications including OSCP, CRTO, and CPTS. I created this blog to share my experiences, insights, and lessons learned from the field of offensive security.</p>
+            <!-- Articles Grid -->
+            <div class="articles-grid">
+                <!-- Medium Article Example -->
+                <article class="article-card" data-category="tutorial">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #dc2626, #ef4444); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">OSCP</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                OSCP Journey: From Zero to Try Harder
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            My complete journey to achieving the OSCP certification. Study strategies, lab approach, exam tips, and lessons learned from the experience.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-book-reader"></i> Certification</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                <h3>What to Expect</h3>
-                <p>In this blog, I'll be covering a wide range of topics related to cybersecurity and offensive security operations:</p>
+                <!-- CRTO Article -->
+                <article class="article-card" data-category="redteam">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #a855f7, #c084fc); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">Red Team</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 15 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                Advanced Red Team Operations with CRTO
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            Deep dive into red team tactics and techniques. Command and control frameworks, OPSEC considerations, and adversary simulation strategies.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-user-secret"></i> Red Teaming</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                <ul>
-                    <li><strong>Penetration Testing Methodologies:</strong> Detailed writeups of testing approaches, techniques, and tools that I use in real-world engagements</li>
-                    <li><strong>Red Team Operations:</strong> Advanced adversary simulation tactics, command and control strategies, and persistence mechanisms</li>
-                    <li><strong>CTF Writeups:</strong> Solutions and explanations for challenging CTF boxes from platforms like Hack The Box and TryHackMe</li>
-                    <li><strong>Security Research:</strong> Vulnerability analysis, exploit development, and responsible disclosure processes</li>
-                    <li><strong>Certification Guides:</strong> My experiences and study strategies for OSCP, CRTO, CPTS, and other certifications</li>
-                    <li><strong>Tool Development:</strong> Custom scripts, automation tools, and security utilities that I build for testing</li>
-                    <li><strong>Security Automation:</strong> Integrating security tools, SIEM platforms, and incident response systems</li>
-                </ul>
+                <!-- Active Directory Article -->
+                <article class="article-card" data-category="pentesting">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #0891b2, #06b6d4); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">Active Directory</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                Active Directory Attack Paths Explained
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            Common Active Directory attack techniques including Kerberoasting, AS-REP roasting, and privilege escalation paths with practical examples.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-network-wired"></i> Pentesting</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                <h3>My Approach</h3>
-                <p>All content on this blog follows responsible disclosure practices and ethical hacking principles. I believe in:</p>
+                <!-- Web App Security Article -->
+                <article class="article-card" data-category="pentesting">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #059669, #10b981); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">Web Security</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                OWASP Top 10: Practical Exploitation Guide
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            Hands-on guide to identifying and exploiting web application vulnerabilities. From SQL injection to XXE attacks with real-world examples.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-globe"></i> Web Security</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                <ul>
-                    <li>Sharing knowledge to help others grow in their cybersecurity journey</li>
-                    <li>Practical, hands-on approaches over pure theory</li>
-                    <li>Continuous learning and staying updated with the latest techniques</li>
-                    <li>Ethical hacking and responsible vulnerability disclosure</li>
-                    <li>Building a stronger security community through collaboration</li>
-                </ul>
+                <!-- SOCAI Project Article -->
+                <article class="article-card" data-category="tutorial">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #7c3aed, #a78bfa); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">Automation</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 20 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                Building SOCAI: AI-Powered Incident Response
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            Technical deep dive into my master's thesis project: an automated security incident response system integrating AI with SIEM platforms.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-robot"></i> Automation</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
 
-                <h3>A Note on Content</h3>
-                <p>The techniques and tools discussed on this blog are intended for educational purposes and authorized security testing only. Always ensure you have proper authorization before testing any systems that you don't own.</p>
+                <!-- CTF Writeup -->
+                <article class="article-card" data-category="ctf">
+                    <div class="article-image">
+                        <div style="background: linear-gradient(135deg, #ea580c, #f97316); width: 100%; height: 100%;"></div>
+                        <div class="article-overlay">
+                            <span class="article-tag">CTF</span>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 15 min read</span>
+                        </div>
+                        <h2>
+                            <a href="https://medium.com/@simone.licitra" target="_blank">
+                                Hack The Box Writeup: Advanced Exploitation
+                                <span class="external-badge"><i class="fab fa-medium"></i> Medium</span>
+                            </a>
+                        </h2>
+                        <p class="article-excerpt">
+                            Detailed walkthrough of a challenging HTB machine featuring multiple exploitation paths, privilege escalation, and creative problem-solving.
+                        </p>
+                        <div class="article-footer">
+                            <span class="read-time"><i class="fas fa-flag"></i> CTF Writeup</span>
+                            <a href="https://medium.com/@simone.licitra" target="_blank" class="article-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-                <p>I operate under the principles of responsible disclosure and ethical hacking. Any vulnerabilities discovered during research are reported to the appropriate vendors or organizations before public disclosure.</p>
-
-                <h3>Coming Soon</h3>
-                <p>I'm currently working on several posts that will be published in the coming weeks:</p>
-
-                <ul>
-                    <li><strong>OSCP Journey:</strong> My path to achieving the OSCP certification, study resources, exam tips, and lessons learned</li>
-                    <li><strong>Red Team Fundamentals:</strong> Essential concepts for aspiring red team operators based on my CRTO experience</li>
-                    <li><strong>Active Directory Attacks:</strong> Common AD attack paths and defense strategies</li>
-                    <li><strong>Web Application Testing:</strong> OWASP Top 10 exploitation techniques with practical examples</li>
-                    <li><strong>Building a Home Lab:</strong> Setting up a personal testing environment for practicing offensive security</li>
-                </ul>
-
-                <h3>Connect With Me</h3>
-                <p>I'm always interested in connecting with fellow security professionals and enthusiasts. Feel free to reach out on <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank" style="color: var(--accent-primary);">LinkedIn</a> or check out my projects on <a href="https://github.com/licitrasimone" target="_blank" style="color: var(--accent-primary);">GitHub</a>.</p>
-
-                <p>Stay tuned for upcoming posts, and happy hacking!</p>
-
-                <p style="margin-top: 2rem; font-style: italic; color: var(--text-secondary);">- Simone</p>
-            </article>
-
-            <div style="text-align: center; padding: 3rem 0; color: var(--text-secondary);">
-                <p>More blog posts coming soon...</p>
-                <p style="margin-top: 1rem; font-size: 2rem;">📝</p>
+            <!-- Call to Action -->
+            <div style="text-align: center; margin-top: 4rem;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+                    Want to stay updated with my latest articles and research?
+                </p>
+                <a href="https://medium.com/@simone.licitra" target="_blank" class="btn btn-primary">
+                    <span>Follow on Medium</span>
+                    <i class="fab fa-medium"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Simone Licitra. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://github.com/licitrasimone" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank">LinkedIn</a>
-                <a href="https://app.hackthebox.com/profile/2085160" target="_blank">Hack The Box</a>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 Simone Licitra. All rights reserved.</p>
+                    <p>Built with passion for cybersecurity</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/licitrasimone" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://app.hackthebox.com/profile/2085160" target="_blank"><i class="fas fa-cube"></i></a>
+                    <a href="https://medium.com/@simone.licitra" target="_blank"><i class="fab fa-medium"></i></a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Blog Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Filter articles
+                articleCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -276,7 +276,6 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    animation: float 3s ease-in-out infinite;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -297,27 +296,19 @@ body {
     left: 100%;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
 .badge-oscp {
     background: linear-gradient(135deg, #dc2626, #ef4444);
     box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
-    animation-delay: 0s;
 }
 
 .badge-crto {
     background: linear-gradient(135deg, #a855f7, #c084fc);
     box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
-    animation-delay: 0.2s;
 }
 
 .badge-cpts {
     background: linear-gradient(135deg, #0891b2, #06b6d4);
     box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3);
-    animation-delay: 0.4s;
 }
 
 .badge:hover {
@@ -677,16 +668,10 @@ section {
     font-size: 3rem;
     color: var(--accent-primary);
     margin-bottom: 1rem;
-    animation: rotate 10s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    transition: transform 0.3s ease;
 }
 
 .skill-category:hover .category-icon {
-    animation: none;
     transform: scale(1.2);
 }
 
@@ -976,7 +961,11 @@ section {
 .blog-overlay i {
     font-size: 3rem;
     color: var(--accent-primary);
-    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-overlay i {
+    transform: scale(1.1);
 }
 
 .blog-content {
