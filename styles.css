@@ -668,11 +668,13 @@ section {
     font-size: 3rem;
     color: var(--accent-primary);
     margin-bottom: 1rem;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .skill-category:hover .category-icon {
-    transform: scale(1.2);
+    color: var(--accent-secondary);
+    text-shadow: 0 0 20px var(--accent-primary);
 }
 
 .skill-category h3 {
