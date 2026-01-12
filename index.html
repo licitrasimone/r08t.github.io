@@ -8,114 +8,484 @@
     <meta name="author" content="Simone Licitra">
     <title>Simone Licitra | Cybersecurity & Red Team</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
+    <!-- Animated Background -->
+    <div class="particles-container" id="particles"></div>
+    <div class="matrix-bg" id="matrix"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
             <div class="nav-brand">
-                <a href="index.html">r08t@sec:~$</a>
+                <a href="index.html">
+                    <span class="terminal-prompt">root@r08t:~#</span>
+                    <span class="cursor">_</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="https://github.com/licitrasimone" target="_blank">GitHub</a></li>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="glitch" data-text="Simone Licitra">Simone Licitra</h1>
-                <p class="subtitle">Cybersecurity Specialist | Penetration Tester | Red Team Operator</p>
-                <div class="certs">
-                    <span class="cert-badge">OSCP</span>
-                    <span class="cert-badge">CRTO</span>
-                    <span class="cert-badge">CPTS</span>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glitch-text" data-text="SIMONE LICITRA">SIMONE LICITRA</h1>
+                <div class="typing-container">
+                    <span class="typing-prefix">></span>
+                    <span id="typed-text"></span>
+                    <span class="typing-cursor">|</span>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge badge-oscp" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-shield-alt"></i> OSCP
+                    </span>
+                    <span class="badge badge-crto" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-user-secret"></i> CRTO
+                    </span>
+                    <span class="badge badge-cpts" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-bug"></i> CPTS
+                    </span>
                 </div>
                 <div class="hero-cta">
-                    <a href="about.html" class="btn btn-primary">Learn More</a>
-                    <a href="blog.html" class="btn btn-secondary">Read Blog</a>
+                    <a href="#about" class="btn btn-primary">
+                        <span>Explore My Work</span>
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Get In Touch</span>
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/licitrasimone" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://app.hackthebox.com/profile/2085160" target="_blank" class="social-icon">
+                        <i class="fas fa-cube"></i>
+                    </a>
+                    <a href="https://medium.com/@simone.licitra" target="_blank" class="social-icon">
+                        <i class="fab fa-medium"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
 
-    <section class="featured">
+    <!-- About Section -->
+    <section id="about" class="about-section">
         <div class="container">
-            <h2>Recent Posts</h2>
-            <div class="posts-grid">
-                <article class="post-card">
-                    <div class="post-meta">
-                        <span class="post-date">January 2026</span>
-                        <span class="post-category">Red Teaming</span>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">01.</span>
+                    About Me
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">I'm a cybersecurity specialist and penetration tester passionate about offensive security and red team operations.</p>
+                    <p>Currently working at <span class="highlight">OPLIUM</span>, I specialize in identifying vulnerabilities, simulating advanced adversaries, and helping organizations strengthen their security posture.</p>
+                    <p>With a Master's degree in Computer Science from <span class="highlight">Politecnico di Torino</span> and multiple industry certifications including OSCP, CRTO, and CPTS, I bring both theoretical knowledge and practical expertise to every engagement.</p>
+                    <p>My thesis on "Leveraging AI Techniques for Automated Security Incident Response" (SOCAI Project) demonstrates my commitment to innovation in cybersecurity automation.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-certificate"></i>
+                            <h3>7+</h3>
+                            <p>Certifications</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3>10+</h3>
+                            <p>Security Projects</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Multiple</h3>
+                            <p>Programming Languages</p>
+                        </div>
                     </div>
-                    <h3>Welcome to My Cybersecurity Blog</h3>
-                    <p>Starting this blog to share insights, techniques, and lessons learned from penetration testing engagements, CTF challenges, and security research.</p>
-                    <a href="blog.html" class="read-more">Read More →</a>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-meta">
-                        <span class="post-date">Coming Soon</span>
-                        <span class="post-category">Pentesting</span>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <div class="image-frame">
+                            <div class="terminal-window">
+                                <div class="terminal-header">
+                                    <span class="terminal-btn red"></span>
+                                    <span class="terminal-btn yellow"></span>
+                                    <span class="terminal-btn green"></span>
+                                </div>
+                                <div class="terminal-body">
+                                    <p><span class="prompt">root@kali</span>:<span class="path">~</span># whoami</p>
+                                    <p>Simone Licitra</p>
+                                    <p><span class="prompt">root@kali</span>:<span class="path">~</span># cat /etc/skills</p>
+                                    <p>Penetration Testing</p>
+                                    <p>Red Team Operations</p>
+                                    <p>Security Automation</p>
+                                    <p>Vulnerability Research</p>
+                                    <p><span class="prompt">root@kali</span>:<span class="path">~</span># <span class="cursor-blink">_</span></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3>OSCP Journey: Lessons Learned</h3>
-                    <p>Reflections on achieving the OSCP certification and key takeaways for aspiring penetration testers.</p>
-                    <a href="blog.html" class="read-more">Read More →</a>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-meta">
-                        <span class="post-date">Coming Soon</span>
-                        <span class="post-category">Red Team</span>
-                    </div>
-                    <h3>Red Team Operations: CRTO Insights</h3>
-                    <p>Advanced techniques and methodologies for effective red team engagements.</p>
-                    <a href="blog.html" class="read-more">Read More →</a>
-                </article>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="expertise">
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
         <div class="container">
-            <h2>Areas of Expertise</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="icon">🔴</div>
-                    <h3>Red Team Operations</h3>
-                    <p>Advanced adversary simulation and offensive security operations</p>
-                </div>
-                <div class="expertise-card">
-                    <div class="icon">🔍</div>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">02.</span>
+                    Technical Arsenal
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>Penetration Testing</h3>
-                    <p>Comprehensive security assessments of networks, applications, and infrastructure</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Network Pentesting</span>
+                        <span class="skill-tag">Web App Security</span>
+                        <span class="skill-tag">API Testing</span>
+                        <span class="skill-tag">Mobile Security</span>
+                        <span class="skill-tag">Wireless Attacks</span>
+                    </div>
                 </div>
-                <div class="expertise-card">
-                    <div class="icon">🤖</div>
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-user-ninja"></i></div>
+                    <h3>Red Team Operations</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C2 Frameworks</span>
+                        <span class="skill-tag">Cobalt Strike</span>
+                        <span class="skill-tag">AD Exploitation</span>
+                        <span class="skill-tag">OPSEC</span>
+                        <span class="skill-tag">Social Engineering</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Security Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Burp Suite</span>
+                        <span class="skill-tag">Metasploit</span>
+                        <span class="skill-tag">BloodHound</span>
+                        <span class="skill-tag">Nmap</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">OWASP ZAP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming & Scripting</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C/C++</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-robot"></i></div>
                     <h3>Security Automation</h3>
-                    <p>Automated incident response and security orchestration</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SIEM Integration</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">TheHive</span>
+                        <span class="skill-tag">SOAR</span>
+                    </div>
                 </div>
-                <div class="expertise-card">
-                    <div class="icon">🛡️</div>
-                    <h3>Threat Analysis</h3>
-                    <p>Security research, vulnerability analysis, and exploit development</p>
+                <div class="skill-category">
+                    <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Frameworks & Methodologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MITRE ATT&CK</span>
+                        <span class="skill-tag">OWASP Top 10</span>
+                        <span class="skill-tag">PTES</span>
+                        <span class="skill-tag">NIST</span>
+                        <span class="skill-tag">Kill Chain</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section">
         <div class="container">
-            <p>&copy; 2026 Simone Licitra. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://github.com/licitrasimone" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank">LinkedIn</a>
-                <a href="https://app.hackthebox.com/profile/2085160" target="_blank">Hack The Box</a>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">03.</span>
+                    Professional Certifications
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">December 2025</span>
+                        <h3>Certified Red Team Operator (CRTO)</h3>
+                        <p>Zero-Point Security</p>
+                        <span class="cert-badge red-team">Advanced Red Teaming</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">June 2025</span>
+                        <h3>Certified Penetration Testing Specialist (CPTS)</h3>
+                        <p>Hack The Box</p>
+                        <span class="cert-badge pentesting">Comprehensive Pentesting</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">September 2024</span>
+                        <h3>TryHackMe Offensive Pentesting</h3>
+                        <p>TryHackMe</p>
+                        <span class="cert-badge offensive">Offensive Security</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">August 2024</span>
+                        <h3>Offensive Security Certified Professional (OSCP)</h3>
+                        <p>OffSec</p>
+                        <span class="cert-badge oscp">Industry Standard</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">June 2024</span>
+                        <h3>Certified Associate Cybersecurity</h3>
+                        <p>Fortinet</p>
+                        <span class="cert-badge foundation">Cybersecurity Fundamentals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">04.</span>
+                    Featured Projects
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card featured">
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
+                    <h3>SOCAI - Automated Incident Response</h3>
+                    <p>Master's thesis project integrating AI techniques for automated security incident response. Combines Rapid7 IDR, Splunk, The Hive, Jira, and Slack for intelligent SOC automation.</p>
+                    <div class="project-tags">
+                        <span>AI/ML</span>
+                        <span>SIEM</span>
+                        <span>Automation</span>
+                        <span>SOC</span>
+                    </div>
+                    <a href="https://github.com/licitrasimone" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-bug"></i></div>
+                    <h3>Vulnerable Web Application</h3>
+                    <p>Educational Spring Boot application demonstrating common web vulnerabilities with documented exploits and security patches.</p>
+                    <div class="project-tags">
+                        <span>Web Security</span>
+                        <span>Spring Boot</span>
+                        <span>OWASP</span>
+                    </div>
+                    <a href="https://github.com/licitrasimone" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Dragonfly Exchange Implementation</h3>
+                    <p>Elliptic curve cryptography implementation for secure IoT device communication with focus on lightweight protocols.</p>
+                    <div class="project-tags">
+                        <span>Cryptography</span>
+                        <span>IoT Security</span>
+                        <span>ECC</span>
+                    </div>
+                    <a href="https://github.com/licitrasimone" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">05.</span>
+                    Latest Blog Posts
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-overlay">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span class="blog-category">Red Teaming</span>
+                        </div>
+                        <h3>CRTO Journey: Advanced Red Team Operations</h3>
+                        <p>Deep dive into advanced red team techniques, C2 frameworks, and OPSEC considerations for realistic adversary simulation.</p>
+                        <a href="blog.html" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-overlay">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span class="blog-category">Pentesting</span>
+                        </div>
+                        <h3>OSCP Certification Guide: Try Harder</h3>
+                        <p>Comprehensive guide to achieving OSCP certification including study resources, lab strategies, and exam preparation tips.</p>
+                        <a href="blog.html" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-overlay">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date"><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span class="blog-category">Automation</span>
+                        </div>
+                        <h3>Building SOCAI: AI-Powered Incident Response</h3>
+                        <p>Technical overview of building an automated security incident response system using machine learning and SOAR integration.</p>
+                        <a href="blog.html" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <div class="blog-cta">
+                <a href="blog.html" class="btn btn-primary">
+                    <span>View All Posts</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">06.</span>
+                    Get In Touch
+                </h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-text">
+                    <p>I'm always interested in connecting with fellow security professionals, discussing research, or collaborating on interesting projects.</p>
+                    <p>Whether you have a question, want to discuss a security topic, or explore potential collaborations, feel free to reach out!</p>
+                </div>
+                <div class="contact-links">
+                    <a href="https://github.com/licitrasimone" target="_blank" class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <p>@licitrasimone</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank" class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <p>Simone Licitra</p>
+                    </a>
+                    <a href="https://medium.com/@simone.licitra" target="_blank" class="contact-card">
+                        <i class="fab fa-medium"></i>
+                        <h3>Medium</h3>
+                        <p>@simone.licitra</p>
+                    </a>
+                    <a href="https://app.hackthebox.com/profile/2085160" target="_blank" class="contact-card">
+                        <i class="fas fa-cube"></i>
+                        <h3>Hack The Box</h3>
+                        <p>#2085160</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 Simone Licitra. All rights reserved.</p>
+                    <p>Built with passion for cybersecurity</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/licitrasimone" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/simone-licitra-009b8490/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://app.hackthebox.com/profile/2085160" target="_blank"><i class="fas fa-cube"></i></a>
+                    <a href="https://medium.com/@simone.licitra" target="_blank"><i class="fab fa-medium"></i></a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
